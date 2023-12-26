@@ -4,7 +4,20 @@
 */
 
 function isPalindrome(str) {
+  str = str
+    .toLowerCase()
+    .split(/[.!?, \s]/)
+    .join("");
+  for (
+    let i = 0, j = str.length - 1;
+    i < str.length / 2, j > (str.length - 1) / 2;
+    i++, j--
+  ) {
+    if (!(str[i] === str[j])) return false;
+  }
   return true;
 }
 
 module.exports = isPalindrome;
+
+// https://bobbyhadz.com/blog/javascript-split-string-by-regex -reference of the regex in split method

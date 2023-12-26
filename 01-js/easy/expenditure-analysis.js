@@ -15,14 +15,9 @@
 
 function calculateTotalSpentByCategory(transactions) {
   if (transactions.length <= 0) return [];
-  let total_transactions = [
-    {
-      category: transactions[0].category,
-      totalSpent: transactions[0].price,
-    },
-  ];
+  let total_transactions = [];
 
-  for (let i = 1; i < transactions.length; i++) {
+  for (let i = 0; i < transactions.length; i++) {
     let flag = 1;
     for (let j = 0; j < total_transactions.length; j++) {
       if (total_transactions[j].category === transactions[i].category) {

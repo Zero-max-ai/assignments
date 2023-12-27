@@ -2,19 +2,19 @@ const calculateTime = require("../hard (promises)/3-promise-all");
 
 describe("calculateTime function", () => {
   test("calculates time 1", async () => {
-    const difference = await calculateTime(1, 2, 3);
+    const difference = await calculateTime(1000, 2000, 3000);
     expect(difference).toBeGreaterThanOrEqual(3000);
     expect(difference).toBeLessThan(4000);
   }, 4000);
 
   test("calculates time 2", async () => {
-    const difference = await calculateTime(4, 5, 7);
+    const difference = await calculateTime(4000, 5000, 7000);
     expect(difference).toBeGreaterThanOrEqual(7000);
     expect(difference).toBeLessThan(8000);
   }, 8000);
 
   test("calculates time 3", async () => {
-    const difference = await calculateTime(10, 1, 1);
+    const difference = await calculateTime(10000, 1000, 1000);
     expect(difference).toBeGreaterThanOrEqual(10000);
     expect(difference).toBeLessThan(11000);
   }, 11000);

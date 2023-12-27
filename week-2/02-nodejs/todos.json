@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "task": "practice 20 DSA questions",
+    "isCompleted": "pending"
+  },
+  {
+    "task": "build backend system for project",
+    "isCompleted": "pending"
+  },
+  {
+    "task": "play genshin",
+    "isCompleted": "completed"
+  },
+  {
+    "task": "file complaint for wifi!",
+    "isCompleted": "pending"
+  }
+]

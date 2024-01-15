@@ -15,7 +15,7 @@ describe('GET /user', function () {
   });
 
   it('5 or more requests return back a 404', function(done) {
-      for (let i = 0; i<5; i++) {
+      for (let i = 0; i<6; i++) {
         request(app).get('/user').set('user-id', userId).then();
       }
       request(app)

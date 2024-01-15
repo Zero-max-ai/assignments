@@ -45,5 +45,57 @@
   const app = express();
   
   app.use(bodyParser.json());
-  
+
+  let todo_list = [];
+  let counter = 0;
+
+  // getting todo task
+  app.get('/todos', (req, res) => {
+    if (todo_list.length == 0) return empty_error();
+    res.status(200).json({ todo_list: todo_list });
+  });
+
+  // getting todo task with id
+  app.get('/todos/:id', (req, res) => {
+    if(todo_list.length == 0) return empty_error();
+    for(let i=0;i<todo_list.length; i++) {
+      if (todo_list[i].id == req.params.id) return res.status(200).json({ task: todo_list[i] });
+    };
+    return res.status(400).json({ msg: 'the task not found!' });
+  });
+
+  // creating new todo task
+  app.post('/todos', (req, res) => {
+    const { title, description } = req.body;
+    if (!title || !description ) return empty_error();
+    todo_list.push({
+      id: counter, title, completed: false, description,
+    });
+    counter++;
+    res.status(201).json({ msg: 'new task added!' });
+  });
+
+  // updating the todo task
+  app.put('/todos/:id', (req, res) => {
+    const {title, completed, description} = req.body;
+    if (todo_list.length == 0) return empty_error();
+    for(let i=0; i<todo_list.length; i++) {
+      if (todo_list[i].id == req.params.id) {
+        if (title) todo_list[i].title = title;
+        if (description) todo_list[i].description = description;
+        if (completed) todo_list[i].completed = completed;
+        return res.send(200).json({ msg: 'the fields has been changed!' });
+      }
+    };
+    res.status(400).json({ msg: 'the task id is invalid!' });
+  });
+
+  // deleting the todo task
+  app.delete('/todos/:id', (req, res) => {
+    if (todo_list.length == 0) return empty_error();
+    todo_list = todo_list.filter(item => item.id != req.params.id);
+    return res.status(200).json({ msg: `the task id: ${req.params.id} deleted successfully` });
+  });
+
+  const empty_error = () => { return res.status(400).json({ msg: 'the todo-list is empty!' }); }
   module.exports = app;

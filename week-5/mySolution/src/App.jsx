@@ -57,7 +57,7 @@ const App = () => {
           onChange={(e) => setTwitterLink(e.target.value)}
         />
         <ButtonHandler
-          className={"full-width"}
+          className={"full-width addTask"}
           innerContent={"Add new user"}
           onClick={addNewUser}
         />
